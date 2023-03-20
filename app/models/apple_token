@@ -1,0 +1,3 @@
+class AppleToken < ApplicationRecord
+    belongs_to :user
+end

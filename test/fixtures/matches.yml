@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  winning_user_id: 1
+  losing_user_id: 1
+  game_duration: 1
+
+two:
+  winning_user_id: 1
+  losing_user_id: 1
+  game_duration: 1
