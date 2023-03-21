@@ -6,6 +6,8 @@ ruby "2.7.0"
 gem 'omniauth'
 gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
 gem 'omniauth-apple', '~> 1.3'
+gem 'rspec', '~> 3.0'
+gem 'rspec-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
