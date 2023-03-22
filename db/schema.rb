@@ -10,32 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_043736) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_174039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "apple_tokens", force: :cascade do |t|
-    t.string "access_token"
-    t.string "refresh_token"
-    t.datetime "expires_at"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "google_tokens", force: :cascade do |t|
-    t.string "access_token"
-    t.string "refresh_token"
-    t.integer "user_id"
-    t.datetime "expires_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "matches", force: :cascade do |t|
     t.integer "winning_user_id"
     t.integer "losing_user_id"
     t.integer "game_duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string "access_token"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.boolean "is_google_token"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
