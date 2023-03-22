@@ -26,4 +26,12 @@ RSpec.describe User do
         user = User.create(email: "test@gmail.com", username: "test", password: "Password")
         expect(user.valid?).to eq(false)
     end
+    it "raises an error is a password is not present" do
+        user = User.create(email: "test@gmail.com", username: "testUser", password: "")
+        expect(user.valid?).to eq(false)
+    end
+    it "raises an error if a password is less than 6 characters" do
+        user = User.create(email: "test@gmail.com", username: "testUser", password: "Pass")
+        expect(user.valid?).to eq(false)
+    end
 end
