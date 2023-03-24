@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root "users#welcome"
   post '/users', to: "users#create"
   post '/users/login', to: "sessions#login"
+  get '/oauth/google', to: "sessions#google_callback"
 end

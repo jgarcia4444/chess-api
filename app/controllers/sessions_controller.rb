@@ -1,5 +1,9 @@
 
 class SessionsController < ApplicationController
+    def google_callback
+        puts "google callback triggered!"
+        puts params
+    end
     def login
         if params[:login_info]
             login_info = params[:login_info]
