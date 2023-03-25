@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   post '/users/login', to: "sessions#login"
 
   mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
-  post 'google_auth/callback', to "google_auth#authenticate_social_auth_user"
+  post 'google_auth/callback', to: "google_auth#authenticate_social_auth_user"
 
 end
