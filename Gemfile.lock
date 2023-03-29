@@ -249,6 +249,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   devise_token_auth
+  jwt
   omniauth
   omniauth-apple (~> 1.3)
   omniauth-google-oauth2 (~> 1.1, >= 1.1.1)
