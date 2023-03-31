@@ -1,6 +1,7 @@
 
 class GoogleAuthController < ApplicationController
     def authenticate_social_auth_user
+        puts "Authenticate Social Auth User triggered!"
         user = User.signin_or_create_from_provider(params)
         if user.persisted?
             sign_in(user)
@@ -13,13 +14,13 @@ class GoogleAuthController < ApplicationController
                     email: user.email,
                     username: user.username
                 },
-                status :created
+                status: :created
             }
         else
             render :json => {
                 success: false,
                 error: {
-                    message: "There was a problem signing you in through #{params[:provider]}"
+                    message: "There was a problem signing you in through #{params[:provider]}",
                     errors: user.errors.full_messages
                 }
             },
