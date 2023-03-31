@@ -9,7 +9,7 @@ Rails.application do |config|
 
   config.middleware.use Rack::Cors do
     allow do
-      origins "*"
+      origins "http://localhost:3001/*"
       resource "*",
         headers: :any,
         expose: %w[access_token expired token-type uid client],
