@@ -1,3 +1,4 @@
+require 'securerandom'
 class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
@@ -10,8 +11,18 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}
 
   def self.signin_or_create_from_provider(provider_data)
-    where(provider: provider_data[:provider], uid: provider_data[:uid]).first_or_create do |user|
+    puts "DEFAULT USERNAME: #{provider_data[:info][:username]}"
+    info_email = provider_data[:info][:email]
+    user = User.find_by(email: info_email)
+    uid = nil
+    if user 
+      uid = user.uid
+    else
+      uid = SecureRandom.uuid
+    end
+    where(provider: provider_data[:provider], uid: uid).first_or_create do |user|
       user.email = provider_data[:info][:email]
+      user.username = provider_data[:info][:username]
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation! 
     end
