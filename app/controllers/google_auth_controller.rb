@@ -12,6 +12,7 @@ class GoogleAuthController < ApplicationController
                 user_info: {
                     id: user.uid,
                     email: user.email,
+                    username: user.username
                 },
                 status: :created
             }
