@@ -8,7 +8,7 @@ class UsersController < ApplicationController
                 user = User.find_by(uid: id)
                 if user 
                     user.update(username: updated_username)
-                    if user.valid?
+                    if user.username == updated_username
                         render :json => {
                             success: true,
                             username: updated_username
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
                             success: false,
                             error: {
                                 message: "There was an error updating the username.",
-                                errors: []
+                                errors: user.errors.full_messages
                             }
                         }
                     end

@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :matches
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true, length: {minimum: 5}
-  validates :password, presence: true, length: {minimum: 6}
 
   def self.signin_or_create_from_provider(provider_data)
     puts "DEFAULT USERNAME: #{provider_data[:info][:username]}"
@@ -23,7 +22,7 @@ class User < ApplicationRecord
     where(provider: provider_data[:provider], uid: uid).first_or_create do |user|
       user.email = provider_data[:info][:email]
       user.username = provider_data[:info][:username]
-      user.password = Devise.friendly_token[0, 20]
+      user.password = Devise.friendly_token[6, 20]
       user.skip_confirmation! 
     end
   end
