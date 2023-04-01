@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
   post 'google-auth/callback', to: "google_auth#authenticate_social_auth_user"
-
+  put '/users/update-username', to: "users#update_username"
 
 end

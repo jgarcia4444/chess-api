@@ -1,5 +1,56 @@
 
 class UsersController < ApplicationController
+    def update_username
+        if params[:id]
+            id = params[:id]
+            if params[:updated_username]
+                updated_username = params[:updated_username]
+                user = User.find_by(uid: id)
+                if user 
+                    user.update(username: updated_username)
+                    if user.valid?
+                        render :json => {
+                            success: true,
+                            username: updated_username
+                        }
+                    else
+                        render :json => {
+                            success: false,
+                            error: {
+                                message: "There was an error updating the username.",
+                                errors: []
+                            }
+                        }
+                    end
+                else
+                    render :json => {
+                        success: false,
+                        error: {
+                            message: "No user was found with the given information.",
+                            errors: []
+                        }
+                    }
+                end
+            else
+                render :json => {
+                    success: false,
+                    error: {
+                        message: "User information was formatted incorrectly.",
+                        errors: []
+                    }
+                }
+            end
+        else
+            render :json => {
+                success: false,
+                error: {
+                    message: "User information was formatted incorrectly.",
+                    errors: []
+                }
+            }
+        end
+    end
+
     def create
         if params[:user_info]
             created_user = User.create(user_params)
